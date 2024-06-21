@@ -1,0 +1,29 @@
+name: 📦 Compile and Run on Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Build Environment
+      run: sudo apt-get update && sudo apt-get install -y build-essential
+
+    - name: Compile the Code
+      run: make
+
+    - name: Store version information
+      run: |
+        echo "Version: $(cat VERSION)" > version_info.txt
+
+    - name: Upload Version Information
+      uses: actions/upload-artifact@v2
+      with:
+        name: version-info
+        path: version_info.txt

@@ -1,12 +1,22 @@
-# SYN-flood
+# 😁 Welcome!!
 
-<hr>
+# Contents
+- [😁 Welcome!!](#-welcome)
+- [Contents](#contents)
+- [👾 SYN-flood](#-syn-flood)
+- [❗Disclaimer](#disclaimer)
+- [📲 Usage](#-usage)
+- [⚙ Brief explanation](#-brief-explanation)
 
-DISCLAIMER: **This repo is created to demonstrate how a SYN-flood attack can be performed. Hacking without permission is illegal. This is strictly educational purposes.**
 
-<hr>
+# 👾 SYN-flood
 
-## Usage
+
+# ❗Disclaimer
+
+**This repo is created to demonstrate how a SYN-flood attack can be performed. Hacking without permission is illegal. This is strictly educational purposes.**
+
+# 📲 Usage
 
 ```bash
 make
@@ -17,8 +27,7 @@ Followed by
 sudo ./syn-flood <IP> <PORT>
 ```
 
-
-## Brief explanation
+# ⚙ Brief explanation
 
 This program is relatively simple. It makes use of raw sockets to create a SYN TCP packet with all the required data, where it randomizes the source IP and port.
 
