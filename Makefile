@@ -1,8 +1,8 @@
-LINK_TARGET = syn_flood
+LINK_TARGET = syn-flood
 
 
 OBJS = \
-	syn_flood.o
+	syn-flood.o
 
 
 REBUILDABLES = $(OBJS) $(LINK_TARGET)

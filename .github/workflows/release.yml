@@ -1,32 +1,41 @@
 name: 📦 Compile and Run on Release
 
 on:
-    push:
-      branches:
-        - main
-      paths:
-        - 'VERSION'
+  push:
+    paths:
+      - 'VERSION'
 
 jobs:
-  build:
+  build-and-upload:
     runs-on: ubuntu-latest
-
+    
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-    - name: Set up Build Environment
-      run: sudo apt-get update && sudo apt-get install -y build-essential
-
-    - name: Compile the Code
+    - name: Compile the code
       run: make
 
-    - name: Store version information
-      run: |
-        echo "Version: $(cat VERSION)" > version_info.txt
+    - name: Get commit message
+      id: get-commit-message
+      run: echo "COMMIT_MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
 
-    - name: Upload Version Information
-      uses: actions/upload-artifact@v2
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        name: version-info
-        path: version_info.txt
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        body: ${{ env.COMMIT_MESSAGE }}
+        draft: false
+        prerelease: false
+
+    - name: Upload binary to GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: syn-flood
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
