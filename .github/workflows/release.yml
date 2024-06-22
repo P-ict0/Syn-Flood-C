@@ -2,6 +2,8 @@ name: 📦 Compile and Run on Release
 
 on:
   push:
+    branches:
+      - main
     paths:
       - 'VERSION'
 
