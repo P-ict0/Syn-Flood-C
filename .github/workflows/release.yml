@@ -20,14 +20,18 @@ jobs:
       id: get-commit-message
       run: echo "COMMIT_MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
 
+    - name: Get version
+      id: get-release-version
+      run: cat VERSION >> $GITHUB_ENV
+
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       with:
-        tag_name: ${{ github.VERSION }}
-        release_name: Release ${{ github.VERSION }}
+        tag_name: v${{ env.VERSION }}
+        release_name: Release ${{ env.VERSION }}
         body: ${{ env.COMMIT_MESSAGE }}
         draft: false
         prerelease: false
@@ -36,7 +40,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: syn-flood
-        tag_name: ${{ env.VERSION }}
+        tag_name: v${{ env.VERSION }}
         draft: false
         prerelease: false
       env:
