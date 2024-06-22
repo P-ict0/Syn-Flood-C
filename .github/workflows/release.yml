@@ -23,6 +23,11 @@ jobs:
     - name: Get version
       id: get-release-version
       run: echo "VERSION=v$(cat VERSION)" >> $GITHUB_ENV
+    
+    - name: Calculate file hash
+      id: hash
+      run: |
+        sha256sum syn-flood > syn-flood.sha256
 
     - name: Create Release
       id: create_release
@@ -39,7 +44,9 @@ jobs:
     - name: Upload binary to GitHub Release
       uses: softprops/action-gh-release@v1
       with:
-        files: syn-flood
+        files: |
+          syn-flood
+          syn-flood.sha256
         tag_name: ${{ env.VERSION }}
         draft: false
         prerelease: false
