@@ -30,6 +30,7 @@ jobs:
       id: hash
       run: |
         sha256sum syn-flood > syn-flood.sha256
+        echo "BINARY_HASH=$(cat syn-flood.sha256)" >> $GITHUB_ENV
 
     - name: Create Release
       id: create_release
@@ -39,7 +40,10 @@ jobs:
       with:
         tag_name: ${{ env.VERSION }}
         release_name: Release ${{ env.VERSION }}
-        body: ${{ env.COMMIT_MESSAGE }}
+        body: |
+          ${{ env.COMMIT_MESSAGE }}
+          ----------------------------------------
+          Binary sha256: ${{ env.BINARY_HASH }}
         draft: false
         prerelease: false
 
