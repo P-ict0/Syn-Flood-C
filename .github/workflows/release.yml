@@ -26,8 +26,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+        tag_name: ${{ github.VERSION }}
+        release_name: Release ${{ github.VERSION }}
         body: ${{ env.COMMIT_MESSAGE }}
         draft: false
         prerelease: false
@@ -36,6 +36,8 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: syn-flood
+        tag_name: ${{ env.VERSION }}
+        draft: false
+        prerelease: false
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-
