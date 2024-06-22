@@ -5,7 +5,7 @@
 - [Contents](#contents)
 - [👾 SYN-flood](#-syn-flood)
 - [❗Disclaimer](#disclaimer)
-- [📲 Usage](#-usage)
+- [📲 Installation and Usage](#-installation-and-usage)
 - [⚙ Brief explanation](#-brief-explanation)
 
 
@@ -16,15 +16,18 @@
 
 **This repo is created to demonstrate how a SYN-flood attack can be performed. Hacking without permission is illegal. This is strictly educational purposes.**
 
-# 📲 Usage
+# 📲 Installation and Usage
+
+Either download the binary `syn-flood` from the [releases](https://github.com/P-ict0/Syn-Flood-C/releases) or compile it yourself by running:
 
 ```bash
+git clone https://github.com/P-ict0/Syn-Flood-C.git
 make
 ```
 
 Followed by
-```
-sudo ./syn-flood <IP> <PORT>
+```bash
+sudo ./syn-flood [IP] [PORT]
 ```
 
 # ⚙ Brief explanation
