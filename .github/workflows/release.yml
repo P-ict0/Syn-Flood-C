@@ -22,7 +22,7 @@ jobs:
 
     - name: Get version
       id: get-release-version
-      run: cat VERSION >> $GITHUB_ENV
+      run: echo "VERSION=v$(cat VERSION)" >> $GITHUB_ENV
 
     - name: Create Release
       id: create_release
@@ -30,7 +30,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       with:
-        tag_name: v${{ env.VERSION }}
+        tag_name: ${{ env.VERSION }}
         release_name: Release ${{ env.VERSION }}
         body: ${{ env.COMMIT_MESSAGE }}
         draft: false
@@ -40,7 +40,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: syn-flood
-        tag_name: v${{ env.VERSION }}
+        tag_name: ${{ env.VERSION }}
         draft: false
         prerelease: false
       env:
