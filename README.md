@@ -1,8 +1,6 @@
 # 😁 Welcome!!
 
 # Contents
-- [😁 Welcome!!](#-welcome)
-- [Contents](#contents)
 - [👾 SYN-flood](#-syn-flood)
 - [❗Disclaimer](#disclaimer)
 - [📲 Installation and Usage](#-installation-and-usage)
